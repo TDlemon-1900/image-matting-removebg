@@ -9,7 +9,7 @@ import requests
 import os
 
 
-path = r"Patant map/yxd/"   # 此处修改文件夹的路径
+path = r"500_images/yqd/"   # r"Patant map/yxd/"    此处修改文件夹的路径
 
 
 def matting(filename, path):
@@ -18,7 +18,7 @@ def matting(filename, path):
         files={'image_file': open(filename, 'rb')},
         data={'size': 'auto'},
         # 此处添加API Key
-        headers={'X-Api-Key': 'jNdMR9cTPazarhtWmeqEvTJN'},
+        headers={'X-Api-Key': 'nw4oxGMSMRn3SkSUrpxbsLSi'},
     )
     if response.status_code == requests.codes.ok:
         with open(path, 'wb') as out:
@@ -32,11 +32,12 @@ if __name__ == '__main__':
     # 1.读取path中的文件夹，然后读取从0开始文件夹的内容,使用该脚本时注意变量path的修改
     # 2.将去背景后的图片保存到指定的文件夹下
 
-    for i in range(0, 30):  # 此处修改文件夹的编号，作者是从0开始的，编号为29的文件夹结束
+    for i in range(49, 70):  # 此处修改文件夹的编号，作者是从0开始的，编号为29的文件夹结束
         newPath = path + str(i) + "/"
         files = os.listdir(newPath)
         fileNew = ''.join(files)
         # 获取filename参数
-        filename = newPath+fileNew
+        filename = newPath + fileNew
         savePath = newPath + "no-bg.png"
         matting(filename, savePath)
+        print("编号为" + str(i) + "的文件夹已经抠图完成")
